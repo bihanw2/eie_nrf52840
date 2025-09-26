@@ -11,6 +11,7 @@ git checkout -b <branch>: creates a new branch, then switches to it
 git pull: fetches and downloads content from a remote reposistory, then updates the local repository to match
 
 git push: uploads local repository content to a remote repository
+git push -u origin <branch>: specifically used for the first time a branch is being pushed to that remote repository
 
 git merge <branch>: integrates changes from the specified branch into the branch you're currently on
 
@@ -19,3 +20,9 @@ git rebase: DO NOT USE
 git fetch: downloads commits from a remote repository into the local repository
 
 git status: lists which files are staged, unstaged, or not tracked by git 
+
+git add <file>: adds new or changed files to the staging area
+
+git log: lists the commits below the current one
+
+git diff: lists the differences in files between one commit and its parent
