@@ -15,6 +15,21 @@ static const struct gpio_dt_spec led1 = GPIO_DT_SPEC_GET(LED1_NODE, gpios);
 static const struct gpio_dt_spec led2 = GPIO_DT_SPEC_GET(LED2_NODE, gpios);
 static const struct gpio_dt_spec led3 = GPIO_DT_SPEC_GET(LED3_NODE, gpios);
 
+void drive_num_pattern(uint8_t num) {
+	
+	uint8_t led0_val = (num >> 0) & 1;
+	uint8_t led1_val = (num >> 1) & 1;
+	uint8_t led2_val = (num >> 2) & 1;
+	uint8_t led3_val = (num >> 3) & 1;
+
+	gpio_pin_set_dt(&led0, led0_val);
+	gpio_pin_set_dt(&led1, led1_val);
+	gpio_pin_set_dt(&led2, led2_val);
+	gpio_pin_set_dt(&led3, led3_val);
+
+	return;
+}
+
 int main(void) {
 	int ret0;
 	int ret1;
@@ -35,20 +50,10 @@ int main(void) {
 	}
 
 	while (1) {
-		gpio_pin_toggle_dt(&led0);
-		k_msleep(500);
-
-		gpio_pin_toggle_dt(&led1);
-		k_msleep(500);
-
-		gpio_pin_toggle_dt(&led2);
-		k_msleep(500);
-
-		gpio_pin_toggle_dt(&led3);
-		k_msleep(500);
-
-		gpio_pin_toggle_dt(&led3);
-		k_msleep(500);
+		for (uint8_t i = 0; i < 16; i++) {
+			drive_num_pattern(i);
+			k_msleep(1000);
+		}
 	}
 	
 	return 0;
