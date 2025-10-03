@@ -55,9 +55,9 @@ int main(void) {
 			k_msleep(1000);
 		}
 
-		for (uint8_t j = 15; j > -1; j--) {
-			drive_num_pattern(j);
-			k_msleep(1000);
+		for (uint8_t j = 0; j < 16; j++) {
+			drive_num_pattern(15 - j);
+			k_msleep(500);
 		}
 	}
 	
