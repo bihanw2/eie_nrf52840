@@ -1,0 +1,28 @@
+git commit: creates a "commit," which is a snapshort of the repository at the time the commit was created
+
+git branch: lists all the branches in the repository
+git branch <branch>: creates a "branch," which is a pointer to a certain commit, acting as a separate workspace for you to work on code without disturbing the code on other branches
+git branch -d <branch>: delete the given branch, if the branch has no unmerged changes
+git branch -D <branch>: delete the given branch, even if the branch has unmerged changes
+
+git checkout <branch>: switches from the current branch to the listed one
+git checkout -b <branch>: creates a new branch, then switches to it
+
+git pull: fetches and downloads content from a remote reposistory, then updates the local repository to match
+
+git push: uploads local repository content to a remote repository
+git push -u origin <branch>: specifically used for the first time a branch is being pushed to that remote repository
+
+git merge <branch>: integrates changes from the specified branch into the branch you're currently on
+
+git rebase: DO NOT USE
+
+git fetch: downloads commits from a remote repository into the local repository
+
+git status: lists which files are staged, unstaged, or not tracked by git 
+
+git add <file>: adds new or changed files to the staging area
+
+git log: lists the commits below the current one
+
+git diff: lists the differences in files between one commit and its parent
