@@ -27,11 +27,11 @@ int main(void) {
     }
 
     while(1) {
-	ret = gpio_pin_get_dt(&button);
-	if (ret > 0) {
-	    printk("Pressed!\n");
-	}
-	k_msleep(SLEEP_TIME_MS);
+
     }
     return 0;
+}
+
+void button_isr(const struct device *dev, struct gpio_callback *cb, uint32_t pins) {
+    printk("Button 0 pressed!");
 }
