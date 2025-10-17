@@ -33,5 +33,5 @@ int main(void) {
 }
 
 void button_isr(const struct device *dev, struct gpio_callback *cb, uint32_t pins) {
-    printk("Button 0 pressed!");
+    printk("Button 0 pressed!\n");
 }
