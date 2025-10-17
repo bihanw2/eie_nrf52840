@@ -8,6 +8,9 @@
 #include <zephyr/sys/printk.h>
 #include <inttypes.h>
 
+#include "BTN.h"
+#include "LED.h"
+
 #define SLEEP_TIME_MS 1000
 #define SW0_NODE DT_ALIAS(sw0)
 
