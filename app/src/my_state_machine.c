@@ -52,7 +52,7 @@ static enum smf_state_result led_on_state_run(void* o) {
         led_state_object.count = 0;
 	smf_set_state(SMF_CTX(&led_state_object), &led_states[LED_OFF_STATE]);
     } else {
-        led_state_object_count++;
+        led_state_object.count++;
     }
 
     return SMF_EVENT_HANDLED;
@@ -67,7 +67,7 @@ static enum smf_state_result led_off_state_run(void* o) {
         led_state_object.count = 0;
 	smf_set_state(SMF_CTX(&led_state_object), &led_states[LED_ON_STATE]);
     } else {
-        led_state_object_count++;
+        led_state_object.count++;
     }
 
     return SMF_EVENT_HANDLED;
