@@ -11,19 +11,19 @@
 
 // Function prototypes for STATE entry, run, exit functions
 static void state_input_char0_entry(void* o);
-static void smf_state_result state_input_char0_run(void* o);
+static enum smf_state_result state_input_char0_run(void* o);
 static void state_input_char0_exit(void* o);
 
 static void state_input_char1_entry(void* o);
-static void smf_state_result state_input_char1_run(void* o);
+static enum smf_state_result state_input_char1_run(void* o);
 static void state_input_char1_exit(void* o);
 
 static void state_display_string_entry(void* o);
-static void smf_state_result state_display_string_run(void* o);
+static enum smf_state_result state_display_string_run(void* o);
 static void state_display_string_exit(void* o);
 
 static void state_standby_entry(void* o);
-static void smf_state_result state_standby_run(void* o);
+static enum smf_state_result state_standby_run(void* o);
 static void state_standby_exit(void* o);
 
 // STATE enum
@@ -64,7 +64,7 @@ static void state_input_char0_entry(void* o) {
 
 }
 
-static void smf_state_result state_input_char0_run(void* o) {
+static enum smf_state_result state_input_char0_run(void* o) {
 
 }
 
@@ -76,7 +76,7 @@ static void state_input_char1_entry(void* o) {
 
 }
 
-static void smf_state_result state_input_char1_run(void* o) {
+static enum smf_state_result state_input_char1_run(void* o) {
 
 }
 
@@ -88,7 +88,7 @@ static void state_display_string_entry(void* o) {
 
 }
 
-static void smf_state_result state_display_string_run(void* o) {
+static enum smf_state_result state_display_string_run(void* o) {
 
 }
 
@@ -100,7 +100,7 @@ static void state_standby_entry(void* o) {
 
 }
 
-static void smf_state_result state_standby_run(void* o) {
+static enum smf_state_result state_standby_run(void* o) {
 
 }
 
