@@ -87,23 +87,94 @@ static void state_off_exit(void* o) {
     printk("\n\rExiting STATE_OFF...");
 }
 
-/*
-static void led_on_state_entry(void* o) {
-    LED_set(LED0, LED_ON);
+static void state_led1_blink_entry(void* o) {
+    printk("\n\rEntering STATE_LED1_BLINK: LED1 blinking at 4 Hz.");
+    LED_blink(LED0, LED_4HZ);
 }
 
-static enum smf_state_result led_on_state_run(void* o) {
-    if (led_state_object.count > 500) {
-        led_state_object.count = 0;
-	smf_set_state(SMF_CTX(&led_state_object), &led_states[LED_OFF_STATE]);
+static enum smf_state_result state_led1_blink_run(void* o) {
+    if (BTN_check_clear_pressed(BTN1)) {
+	smf_set_state(SMF_CTX(&led_state_object), &led_states[STATE_ODD_ON]);
+    } else if (BTN_check_clear_pressed(BTN2)) {
+	smf_set_state(SMF_CTX(&led_state_object), &led_states[STATE_ALL_BLINK]);
+    } else if (BTN_check_clear_pressed(BTN3)) {
+	smf_set_state(SMF_CTX(&led_state_object), &led_states[STATE_OFF]);
     } else {
-        led_state_object.count++;
+        ;
     }
-
     return SMF_EVENT_HANDLED;
 }
 
-static void led_on_state_exit(void* o) {
+static void state_led1_blink_exit(void* o) {
+    printk("\n\rExiting STATE_LED1_BLINK...");
+}
+
+static void state_odd_on_entry(void* o) {
+    printk("\n\rEntering STATE_ODD_ON: LED1 and LED3 on.");
+    LED_set(LED0, LED_ON);
+    LED_set(LED1, LED_OFF);
+    LED_set(LED2, LED_ON);
+    LED_set(LED3, LED_OFF);
+}
+
+static enum smf_state_result state_odd_on_run(void* o) {
+    if (BTN_check_clear_pressed(BTN3)) {
+	smf_set_state(SMF_CTX(&led_state_object), &led_states[STATE_OFF]);
+    } else if (led_state_object.count > 1000) {
+        led_state_object.count = 0;
+	smf_set_state(SMF_CTX(&led_state_object), &led_states[STATE_EVEN_ON]);
+    } else {
+	led_state_object.count++;
+    }
+    return SMF_EVENT_HANDLED;
+}
+
+static void state_odd_on_exit(void* o) {
+    printk("\n\rExiting STATE_ODD_ON...");
+}
+
+static void state_even_on_entry(void* o) {
+    printk("\n\rEntering STATE_EVEN_ON: LED2 and LED4 on.");
     LED_set(LED0, LED_OFF);
-}*/
+    LED_set(LED1, LED_ON);
+    LED_set(LED2, LED_OFF);
+    LED_set(LED3, LED_ON);
+}
+
+static enum smf_state_result state_even_on_run(void* o) {
+    if (BTN_check_clear_pressed(BTN3)) {
+	smf_set_state(SMF_CTX(&led_state_object), &led_states[STATE_OFF]);
+    } else if (led_state_object.count > 2000) {
+        led_state_object.count = 0;
+	smf_set_state(SMF_CTX(&led_state_object), &led_states[STATE_ODD_ON]);
+    } else {
+	led_state_object.count++;
+    }
+    return SMF_EVENT_HANDLED;
+}
+
+static void state_even_on_exit(void* o) {
+    printk("\n\rExiting STATE_EVEN_ON...");
+}
+
+static void state_all_blink_entry(void* o) {
+    printk("\n\rEntering STATE_ALL_BLINK: All LEDs blinking at 16 Hz.");
+    LED_blink(LED0, LED_16HZ);
+    LED_blink(LED1, LED_16HZ);
+    LED_blink(LED2, LED_16HZ);
+    LED_blink(LED3, LED_16HZ);
+}
+
+static enum smf_state_result state_all_blink_run(void* o) {
+    if (BTN_check_clear_pressed(BTN3)) {
+	smf_set_state(SMF_CTX(&led_state_object), &led_states[STATE_OFF]);
+    } else {
+        ;
+    }
+    return SMF_EVENT_HANDLED;
+}
+
+static void state_all_blink_exit(void* o) {
+    printk("\n\rExiting STATE_ALL_BLINK...");
+}
 
