@@ -34,6 +34,12 @@ enum string_state_machine_states {
     STATE_STANDBY
 };
 
+// STATE variable struct
+typedef struct {
+    struct smf_ctx ctx;
+    uint16_t count;
+} string_state_object_t;
+
 // Assign entry, run, exit functions to each STATE
 static const struct smf_state string_states[] = {
     [STATE_INPUT_CHAR0] = SMF_CREATE_STATE(state_input_char0_entry, state_input_char0_run, state_input_char0_exit, NULL, NULL),
@@ -42,6 +48,14 @@ static const struct smf_state string_states[] = {
     [STATE_STANDBY] = SMF_CREATE_STATE(state_standby_entry, state_standby_run, state_standby_exit, NULL, NULL)
 };
 
-void state_machine_init() {}
+// Create current STATE variable
+static string_state_object_t string_state_object;
 
-int state_machine_run() {}
+void state_machine_init() {
+    string_state_object.count = 0;
+    smf_set_initial(SMF_CTX(&string_state_object), &string_states[STATE_INPUT_CHAR0]);
+}
+
+int state_machine_run() {
+    return smf_run_state(SMF_CTX(&string_state_object));
+}
